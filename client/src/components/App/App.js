@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
-import store from './store';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
-import Project from './components/Project';
+import store from '../../store';
+import { loadUser } from '../../actions/auth';
+import setAuthToken from '../../utils/setAuthToken';
+import Project from '../Project';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

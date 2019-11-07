@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components/macro';
 
 import { theme, GlobalStyle } from './styles';
-import './index.css';
-import App from './App';
+import App from './components/App/App';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
