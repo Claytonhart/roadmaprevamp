@@ -1,11 +1,13 @@
 {
-  "name": "flashcards",
+  "name": "roadmaprevamp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.11.0",
+    "react-beautiful-dnd": "^12.0.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "styled-components": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +29,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.6"
+  },
+  "babelMacros": {
+    "styledComponents": {}
+  },
+  "proxy": "http://localhost:5000"
 }
