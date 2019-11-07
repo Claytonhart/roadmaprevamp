@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import Task from './Task';
+import Task from '../Task';
 
 const Container = styled.div`
   margin: 8px;
