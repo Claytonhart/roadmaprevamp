@@ -45,4 +45,18 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
     background-color: transparent;
   }
+
+  #root {
+    height: 100%;
+    width: 100%;
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    cursor: pointer;
+  }
 `;
