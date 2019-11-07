@@ -1,0 +1,9 @@
+// Allows absolute paths in CRA
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}

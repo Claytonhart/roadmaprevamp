@@ -16,18 +16,27 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     box-sizing: border-box;
-    color: #272838;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #172b4d;  
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42857142857143;
   }
 
   h2{
-    color: ${props => props.theme.primary.grey};
     font-size: 40px;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 20px;
-    }
+  }
+  
+  h3 {
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -.008em;
+  }
 
   input {
     border: none;
@@ -52,11 +61,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: currentColor;
+    /* color: currentColor; */
+    color: #0052cc;
     text-decoration: none;
   }
   
   a:hover {
-    cursor: pointer;
-  }
+    color: #0065ff;
+    text-decoration: underline;
+}
 `;
