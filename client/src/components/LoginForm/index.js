@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { LoginForm, LoginInput, LoginButton } from './style';
+import { LoginForm, LoginInput, LoginButton, LoginError } from './style';
 import { login } from '../../actions/auth';
 
-const Login = ({ login }) => {
+const Login = ({ login, error }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -22,6 +22,7 @@ const Login = ({ login }) => {
 
   return (
     <LoginForm onSubmit={e => onSubmit(e)}>
+      {error.msg && <LoginError>{error.msg}</LoginError>}
       <LoginInput
         type='email'
         placeholder='Email Address'
@@ -45,7 +46,11 @@ const Login = ({ login }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  error: state.error
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(Login);

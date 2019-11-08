@@ -21,3 +21,9 @@ export const LoginButton = styled.input`
   margin: 8px;
   cursor: pointer;
 `;
+
+export const LoginError = styled.span`
+  padding: 12px;
+  color: red;
+  text-align: center;
+`;
