@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import Project from '../Project';
-import Login from '../../views/Login';
 import * as ROUTES from '../../constants/routes';
-import Register from 'src/views/Register';
 import withAuthentication from '../Session/withAuthentication';
+import Register from 'views/Register';
+import Login from 'views/Login';
 
 const Container = styled.div`
   display: flex;
@@ -19,8 +19,9 @@ const App = () => {
     <BrowserRouter>
       <Container>
         <Switch>
-          <Route exact path={ROUTES.LANDING} component={Project} />
-          <Route exact path={ROUTES.PROJECTS} component={Project} />
+          {/* <Route exact path={ROUTES.LANDING} component={Landing} /> */}
+          {/* <Route exact path={ROUTES.PROJECT_LIST} component={ProjectList} /> */}
+          <Route exact path={ROUTES.PROJECT} component={Project} />
           <Route exact path={ROUTES.LOGIN} component={Login} />
           <Route exact path={ROUTES.REGISTER} component={Register} />
         </Switch>

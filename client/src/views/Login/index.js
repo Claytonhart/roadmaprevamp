@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 import { Container, LoginLogo } from './style';
-import LoginForm from 'src/components/LoginForm';
+import LoginForm from 'components/LoginForm';
 
 const Login = ({ isAuthenticated }) => {
   if (isAuthenticated) {

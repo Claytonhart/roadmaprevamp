@@ -214,7 +214,7 @@ router.post('/:id/column', async (req, res) => {
   }
 });
 
-// @route   DELETE api/project/:id/createColumn
+// @route   DELETE api/project/:id/deleteColumn
 // @desc    project route
 // @access  Public
 router.delete('/:id/column/:columnId', async (req, res) => {

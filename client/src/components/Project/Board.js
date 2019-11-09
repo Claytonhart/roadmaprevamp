@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import initialData from '../../initial-data';
+import {
+  setColumnOrder,
+  setTaskInSameColumn,
+  setTaskInNewColumn
+} from '../../actions/board';
 import Column from '../Column';
 
 const Container = styled.div`
   display: flex;
 `;
 
-const Board = () => {
-  const [boardState, setBoardState] = useState(initialData);
+const Board = ({
+  boardState,
+  setColumnOrder,
+  setTaskInSameColumn,
+  setTaskInNewColumn
+}) => {
+  let { projectId } = useParams();
 
-  const onDragEnd = result => {
+  const onDragEnd = async result => {
     const { destination, source, draggableId, type } = result;
 
     // do nothing and return draggable to original position if no destination
@@ -34,12 +45,7 @@ const Board = () => {
       newColumnOrder.splice(source.index, 1);
       newColumnOrder.splice(destination.index, 0, draggableId);
 
-      const newState = {
-        ...boardState,
-        columnOrder: newColumnOrder
-      };
-
-      setBoardState(newState);
+      await setColumnOrder(projectId, newColumnOrder);
       return;
     }
 
@@ -57,15 +63,7 @@ const Board = () => {
         taskIds: newTaskIds
       };
 
-      const newBoardState = {
-        ...boardState,
-        columns: {
-          ...boardState.columns,
-          [newColumn.id]: newColumn
-        }
-      };
-
-      setBoardState(newBoardState);
+      setTaskInSameColumn(projectId, newColumn);
       return;
     }
 
@@ -84,16 +82,7 @@ const Board = () => {
       taskIds: finishTaskIds
     };
 
-    const newState = {
-      ...boardState,
-      columns: {
-        ...boardState.columns,
-        [newStart.id]: newStart,
-        [newFinish.id]: newFinish
-      }
-    };
-
-    setBoardState(newState);
+    setTaskInNewColumn(projectId, newStart, newFinish);
   };
 
   return (
@@ -124,4 +113,11 @@ const Board = () => {
   );
 };
 
-export default Board;
+const mapStateToProps = state => ({
+  boardState: state.board
+});
+
+export default connect(
+  mapStateToProps,
+  { setColumnOrder, setTaskInSameColumn, setTaskInNewColumn }
+)(Board);

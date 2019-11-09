@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Board from './Board';
+import BoardContainer from './BoardContainer';
 
 const Project = () => {
   return (
     <div>
       <h1>Project Name</h1>
-      <Board />
+      <BoardContainer />
     </div>
   );
 };
