@@ -24,7 +24,7 @@ export const loadUser = () => async dispatch => {
     if (localStorage.token) {
       const res = await axios.get('/api/auth');
 
-      if (res.data.user) {
+      if (res.data) {
         dispatch({
           type: USER_LOADED,
           payload: res.data
