@@ -15,7 +15,7 @@ import {
   DELETE_COLUMN,
   CREATE_NEW_COLUMN,
   GET_BOARD_BY_ID,
-  SET_PROJECT_DATA,
+  // SET_PROJECT_DATA,
   CLEAR_BOARD
 } from './types';
 
@@ -32,7 +32,8 @@ export const getBoardById = projectId => async dispatch => {
   try {
     const res = await axios.get(`/api/project/${projectId}`);
     const { data } = res;
-    const { board, date, name, _id: id } = data;
+    // const { board, date, name, _id: id } = data;
+    const { board, _id: id } = data;
 
     const newBoard = sanatizeBoardState(board);
 
