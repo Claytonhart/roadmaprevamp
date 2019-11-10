@@ -1,13 +1,26 @@
 import React from 'react';
+import styled from 'styled-components/macro';
 
 import BoardContainer from './BoardContainer';
+import Sidebar from 'components/Sidebar';
+
+const MainContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  overflow: hidden;
+`;
 
 const Project = () => {
   return (
-    <div>
-      <h1>Project Name</h1>
-      <BoardContainer />
-    </div>
+    <>
+      <Sidebar />
+      <MainContainer>
+        <h1>Project Name</h1>
+        <BoardContainer />
+      </MainContainer>
+    </>
   );
 };
 
