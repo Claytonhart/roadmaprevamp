@@ -12,10 +12,6 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.h3`
-  padding: 8px;
-`;
-
 export const TaskList = styled.div`
   transition: background-color 0.2s ease;
   background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'inherit')};

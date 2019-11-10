@@ -4,7 +4,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Task from '../Task';
 import AddTask from '../AddTask';
 import ColumnTitle from '../ColumnTitle.js';
-import { Container, Title, TaskList, ColumnTasksContainer } from './style';
+import { Container, TaskList, ColumnTasksContainer } from './style';
 
 const Column = props => {
   return (
