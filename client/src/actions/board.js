@@ -172,7 +172,7 @@ export const setColumnTitle = (projectId, title, column) => async dispatch => {
       }
     });
 
-    await axios.put(`/api/project/${projectId}/title`, body, config);
+    await axios.put(`/api/project/${projectId}/column/title`, body, config);
   } catch (err) {
     console.log(err);
   }

@@ -3,6 +3,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Task from '../Task';
 import AddTask from '../AddTask';
+import ColumnTitle from '../ColumnTitle.js';
 import { Container, Title, TaskList, ColumnTasksContainer } from './style';
 
 const Column = props => {
@@ -10,7 +11,7 @@ const Column = props => {
     <Draggable draggableId={props.column.id} index={props.index}>
       {provided => (
         <Container {...provided.draggableProps} ref={provided.innerRef}>
-          <Title {...provided.dragHandleProps}>{props.column.title}</Title>
+          <ColumnTitle provided={provided} column={props.column} />
           <ColumnTasksContainer>
             <AddTask column={props.column} />
             <Droppable droppableId={props.column.id} type='task'>
