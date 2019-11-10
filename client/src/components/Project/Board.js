@@ -10,8 +10,18 @@ import {
   setTaskInNewColumn
 } from '../../actions/board';
 import Column from '../Column';
+import AddColumn from '../AddColumn';
 
 const Container = styled.div`
+  display: flex;
+  background-color: rgb(246, 248, 249);
+  align-items: flex-start;
+  overflow-x: auto;
+  flex: 1 1 0%;
+  padding: 20px;
+`;
+
+const InnerListContainer = styled.div`
   display: flex;
 `;
 
@@ -90,22 +100,25 @@ const Board = ({
       <Droppable droppableId='all-columns' direction='horizontal' type='column'>
         {provided => (
           <Container {...provided.droppableProps} ref={provided.innerRef}>
-            {boardState.columnOrder.map((columnId, index) => {
-              const column = boardState.columns[columnId];
-              const tasks = column.taskIds.map(
-                taskId => boardState.tasks[taskId]
-              );
+            <InnerListContainer>
+              {boardState.columnOrder.map((columnId, index) => {
+                const column = boardState.columns[columnId];
+                const tasks = column.taskIds.map(
+                  taskId => boardState.tasks[taskId]
+                );
 
-              return (
-                <Column
-                  key={column.id}
-                  column={column}
-                  tasks={tasks}
-                  index={index}
-                />
-              );
-            })}
-            {provided.placeholder}
+                return (
+                  <Column
+                    key={column.id}
+                    column={column}
+                    tasks={tasks}
+                    index={index}
+                  />
+                );
+              })}
+              {provided.placeholder}
+            </InnerListContainer>
+            <AddColumn />
           </Container>
         )}
       </Droppable>
