@@ -26,7 +26,7 @@ export const setProjectsName = (index, id, name) => async dispatch => {
   try {
     const body = { name };
 
-    await axios.put(`/api/project/${id}/setProjectName`, body);
+    await axios.put(`/api/project/${id}/name`, body);
 
     dispatch({
       type: SET_PROJECTS_NAME,
