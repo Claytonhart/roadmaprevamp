@@ -11,7 +11,6 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case SET_CURRENT_PROJECT_DATA: {
-      debugger;
       return {
         ...state,
         ...payload

@@ -2,9 +2,9 @@ import axios from 'axios';
 import uuid from 'uuid';
 
 import sanatizeBoardState from '../utils/sanatizeBoardState';
+import { setCurrentProjectData } from './currentProject';
 
 import {
-  GET_BOARD,
   SET_COLUMN_ORDER,
   SET_TASK_IN_SAME_COLUMN,
   SET_TASK_IN_NEW_COLUMN,
@@ -15,24 +15,13 @@ import {
   DELETE_COLUMN,
   CREATE_NEW_COLUMN,
   GET_BOARD_BY_ID,
-  SET_CURRENT_PROJECT_DATA,
   CLEAR_BOARD
 } from './types';
-
-import initialData from '../initial-data';
-
-export const getBoard = () => {
-  return {
-    type: GET_BOARD,
-    payload: initialData
-  };
-};
 
 export const getBoardById = projectId => async dispatch => {
   try {
     const res = await axios.get(`/api/project/${projectId}`);
     const { data } = res;
-    console.log('board data: ' + JSON.stringify(data, null, 3));
     // const { users,  _id: id, name, owner, board, createdDate, editedDate, __v  } = data;
     const { board, _id: id, ...projectData } = data;
 
@@ -43,13 +32,8 @@ export const getBoardById = projectId => async dispatch => {
       payload: newBoard
     });
 
-    dispatch({
-      type: SET_CURRENT_PROJECT_DATA,
-      payload: {
-        id,
-        ...projectData
-      }
-    });
+    dispatch(setCurrentProjectData({ id, ...projectData }));
+
     return id;
   } catch (err) {
     console.log(err);
