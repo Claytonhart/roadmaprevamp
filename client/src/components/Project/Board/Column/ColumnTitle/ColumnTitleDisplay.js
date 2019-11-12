@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { deleteColumn } from '../../actions/board';
-import DropdownContainer from '../../utils/DropdownContainer';
+import { deleteColumn } from '../../../../../actions/board';
+import DropdownContainer from '../../../../../utils/DropdownContainer';
 import {
   Title,
   ColumnTitleIconContainer,

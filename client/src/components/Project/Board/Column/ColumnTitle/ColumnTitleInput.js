@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { setColumnTitle } from '../../actions/board';
-import onEscOrClickOutside from '../../utils/onEscOrClickOutside';
+import { setColumnTitle } from '../../../../../actions/board';
+import onEscOrClickOutside from '../../../../../utils/onEscOrClickOutside';
 import { TitleForm, TitleInput } from './style';
 
 const ColumnTitleInput = ({ column, setIsSelected, setColumnTitle }) => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { createNewColumn } from '../../actions/board';
+import { createNewColumn } from '../../../../actions/board';
 import onEscOrClickOutside from 'utils/onEscOrClickOutside';
 import { NewColumnForm, NewColumnFormInput } from './style';
 

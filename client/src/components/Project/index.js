@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import BoardContainer from './BoardContainer';
+import BoardContainer from './Board/BoardContainer';
 import Sidebar from 'components/Sidebar';
 
 const MainContainer = styled.div`

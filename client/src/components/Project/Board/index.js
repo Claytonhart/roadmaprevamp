@@ -8,9 +8,9 @@ import {
   setColumnOrder,
   setTaskInSameColumn,
   setTaskInNewColumn
-} from '../../actions/board';
-import Column from '../Column';
-import AddColumn from '../AddColumn';
+} from '../../../actions/board';
+import Column from './Column';
+import AddColumn from './AddColumn';
 
 const Container = styled.div`
   display: flex;

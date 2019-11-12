@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { getBoardById } from '../../actions/board';
-import Board from './Board';
+import { getBoardById } from '../../../actions/board';
+import Board from '.';
 import BoardLoading from './BoardLoading';
 
 const BoardContainer = ({ getBoardById }) => {

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import Task from '../Task';
-import AddTask from '../AddTask';
-import ColumnTitle from '../ColumnTitle.js';
+import Task from './Task';
+import AddTask from './AddTask';
+
 import { Container, TaskList, ColumnTasksContainer } from './style';
+import ColumnTitle from './ColumnTitle';
 
 const Column = props => {
   return (
