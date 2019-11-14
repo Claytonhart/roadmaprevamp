@@ -1,28 +1,34 @@
 import axios from 'axios';
+import uuid from 'uuid';
 import {
   GET_CURRENT_USERS_PROJECTS,
   SET_PROJECTS_NAME,
   DELETE_PROJECT,
   ADD_USER_TO_PROJECT,
-  ADD_USER_ALREADY_EXISTS
+  ADD_USER_ALREADY_EXISTS,
+  CREATE_NEW_PROJECT
 } from './types';
 
 import { setAlert } from './alert';
+import { arrayToObject } from '../utils/arrayToObject';
 
 export const getCurrentUsersProjects = () => async dispatch => {
   try {
     const res = await axios.get(`/api/project`);
 
+    // convert projects to an object w/ keys of each project's _id
+    const projectsObj = arrayToObject(res.data, '_id');
+
     dispatch({
       type: GET_CURRENT_USERS_PROJECTS,
-      payload: res.data
+      payload: projectsObj
     });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const setProjectsName = (index, id, name) => async dispatch => {
+export const setProjectsName = (id, name) => async dispatch => {
   try {
     const body = { name };
 
@@ -31,7 +37,7 @@ export const setProjectsName = (index, id, name) => async dispatch => {
     dispatch({
       type: SET_PROJECTS_NAME,
       payload: {
-        index,
+        id,
         name
       }
     });
@@ -53,16 +59,16 @@ export const deleteProject = id => async dispatch => {
   }
 };
 
-export const addUserToProject = (id, user, index) => async dispatch => {
+export const addUserToProject = (projectId, userId) => async dispatch => {
   try {
-    const body = { user };
-    await axios.put(`/api/project/${id}/user`, body);
+    const body = { userId };
+    await axios.put(`/api/project/${projectId}/users`, body);
 
     dispatch({
       type: ADD_USER_TO_PROJECT,
       payload: {
-        user,
-        index
+        projectId,
+        userId
       }
     });
   } catch (err) {
@@ -77,3 +83,69 @@ export const addUserToProject = (id, user, index) => async dispatch => {
     });
   }
 };
+
+export const createNewProject = name => async dispatch => {
+  try {
+    const firstColumnId = uuid.v4();
+    const secondColumnId = uuid.v4();
+    const thirdColumnId = uuid.v4();
+
+    const body = {
+      name,
+      board: {
+        tasks: [],
+        columns: [
+          {
+            id: firstColumnId,
+            title: 'To do',
+            taskIds: []
+          },
+          {
+            id: secondColumnId,
+            title: 'In progress',
+            taskIds: []
+          },
+          {
+            id: thirdColumnId,
+            title: 'Finished',
+            taskIds: []
+          }
+        ],
+        columnOrder: [firstColumnId, secondColumnId, thirdColumnId]
+      }
+    };
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const res = await axios.post(`/api/project`, body, config);
+    const id = res.data._id;
+
+    dispatch({
+      type: CREATE_NEW_PROJECT,
+      payload: res.data
+    });
+
+    return id;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// export const setProjectName = (id, name) => async dispatch => {
+//   try {
+//     const body = { name };
+
+//     await axios.put(`/api/project/${id}/setProjectName`, body);
+
+//     dispatch({
+//       type: SET_PROJECT_NAME,
+//       payload: name
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-// import { createNewProject } from "../../../../actions/project";
+import { createNewProject } from 'actions/projects';
+import { setError } from 'actions/error';
 
 import {
   Modal,
@@ -16,9 +17,9 @@ import {
   ModalContent,
   ModalFooter,
   ModalFooterButton,
-  ModalForm
+  ModalForm,
+  ModalError
 } from './style';
-// import { setAlert } from "../../../../actions/alert";
 
 const CreateProjectModal = ({
   isVisible = false,
@@ -27,9 +28,10 @@ const CreateProjectModal = ({
   footer,
   onClose,
   history,
-  // createNewProject,
-  // setAlert,
-  setShouldUpdate
+  createNewProject,
+  setShouldUpdate,
+  setError,
+  error
 }) => {
   const [formData, setFormData] = useState({
     projectTitle: '',
@@ -59,13 +61,14 @@ const CreateProjectModal = ({
     e.preventDefault();
 
     if (!projectTitle) {
-      // setAlert("Please add a project title", "red");
+      setError('Please add a project title');
+      // setAlert('Please add a project title', 'red');
       console.log('please add a project title');
     } else {
       setShouldUpdate(false);
-      // const id = await createNewProject(projectTitle);
+      const id = await createNewProject(projectTitle);
       onClose();
-      // history.push(`/project/${id}`);
+      history.push(`/projects/${id}`);
     }
   };
 
@@ -79,6 +82,7 @@ const CreateProjectModal = ({
         <ModalBody>
           <ModalContent>
             <ModalForm onSubmit={e => onFormSubmit(e)}>
+              {error.msg && <ModalError>{error.msg}</ModalError>}
               <label>Project Title</label>
               <ModalTitle
                 type='text'
@@ -108,9 +112,13 @@ const CreateProjectModal = ({
   );
 };
 
+const mapStateToProps = state => ({
+  error: state.error
+});
+
 export default withRouter(
   connect(
-    null
-    // { createNewProject, setAlert }
+    mapStateToProps,
+    { createNewProject, setError }
   )(CreateProjectModal)
 );

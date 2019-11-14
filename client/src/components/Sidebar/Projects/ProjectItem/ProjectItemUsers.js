@@ -58,7 +58,8 @@ const ProjectItemUsers = ({ id, index, users }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  users: state.projects[ownProps.index].users
+  // users: state.projects[ownProps.index].users
+  users: state.projects[ownProps.id].users
 });
 
 export default connect(mapStateToProps)(ProjectItemUsers);

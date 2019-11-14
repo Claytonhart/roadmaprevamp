@@ -47,7 +47,11 @@ router.post('/', auth, async (req, res) => {
 
     await project.save();
 
-    res.json(project);
+    let tempProject = project.toObject();
+    delete tempProject.board;
+
+    res.json(tempProject);
+    // res.json(project);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -153,7 +157,7 @@ router.get('/:id/users', auth, async (req, res) => {
 // @access  Private
 router.put('/:id/users', auth, async (req, res) => {
   try {
-    const newUserId = new ObjectId(req.body.user);
+    const newUserId = new ObjectId(req.body.userId);
 
     let project;
     // Check if the id is a 12 char string

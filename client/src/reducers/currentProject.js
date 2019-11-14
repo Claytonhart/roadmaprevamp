@@ -1,7 +1,6 @@
 import {
   SET_CURRENT_PROJECT_DATA,
-  CLEAR_CURRENT_PROJECT,
-  SET_CURRENT_PROJECT_NAME
+  CLEAR_CURRENT_PROJECT
 } from '../actions/types';
 
 const initialState = {};
@@ -19,13 +18,6 @@ export default function(state = initialState, action) {
     case CLEAR_CURRENT_PROJECT: {
       return {
         ...initialState
-      };
-    }
-    case SET_CURRENT_PROJECT_NAME: {
-      const name = payload;
-      return {
-        ...state,
-        name
       };
     }
     default:

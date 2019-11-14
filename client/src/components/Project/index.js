@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 import BoardContainer from './Board/BoardContainer';
 import Sidebar from 'components/Sidebar';
+import TopBar from './TopBar';
 
 const MainContainer = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const Project = () => {
     <>
       <Sidebar />
       <MainContainer>
-        <h1>Project Name</h1>
+        <TopBar />
         <BoardContainer />
       </MainContainer>
     </>

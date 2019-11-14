@@ -62,7 +62,7 @@ const EditProjectModal = ({
     if (!projectTitle) {
       setAlert('Please add a project title', 'red');
     } else {
-      await setProjectsName(index, projectId, projectTitle);
+      await setProjectsName(projectId, projectTitle);
       onClose();
     }
   };
@@ -94,7 +94,7 @@ const EditProjectModal = ({
               />
               <ModalInputPeople>Add people to the project</ModalInputPeople>
             </ModalForm>
-            <AddUsers index={index} />
+            <AddUsers index={index} projectId={projectId} />
             {/* allow searching all users to display */}
             <ModalFooterButton onClick={onFormSubmit}>
               Update Project Settings

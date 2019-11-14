@@ -11,8 +11,9 @@ const ProjectList = ({ projects, getCurrentUsersProjects }) => {
 
   return (
     <div>
-      {projects.map((project, index) => {
-        const { _id: id, name } = project;
+      {/* map over projects object's project ids, and display a ProjectItem for each one */}
+      {Object.keys(projects).map((projectId, index) => {
+        const { _id: id, name } = projects[projectId];
         return <ProjectItem index={index} key={id} title={name} id={id} />;
       })}
     </div>

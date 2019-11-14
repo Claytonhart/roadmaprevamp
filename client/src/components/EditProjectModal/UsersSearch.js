@@ -22,22 +22,13 @@ const UsersIcon = styled.span`
   cursor: pointer;
 `;
 
-const UsersSearch = ({ index, id, addUserToProject }) => {
-  // const [user, setUser] = useState("");
+const UsersSearch = ({ id, addUserToProject }) => {
   const [users, setUsers] = useState([]);
 
-  // const onFormSubmit = e => {
-  //   e.preventDefault();
-  //   console.log("searching for user");
-  // };
-
   const searchForUsers = async e => {
-    // setUser(e.target.value);
-    // makeUserRequest(e.target.value);
     if (e.target.value) {
       const res = await axios.get(`/api/users/name/${e.target.value}`);
       setUsers(res.data);
-      console.log(res);
     } else {
       setUsers([]);
     }
@@ -45,10 +36,7 @@ const UsersSearch = ({ index, id, addUserToProject }) => {
 
   const addUser = async i => {
     const userId = users[i]._id;
-    // const usersArray = [].push(userId);
-    // call action addUser based on id
-    await addUserToProject(id, userId, index);
-    console.log('adding user: ' + userId);
+    await addUserToProject(id, userId);
   };
 
   return (

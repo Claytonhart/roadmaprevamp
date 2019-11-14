@@ -41,23 +41,21 @@ const AddUsersTooltip = styled.span`
   text-transform: capitalize;
 `;
 
-const AddUsers = ({ project, users, index }) => {
-  const { _id: id } = project;
+const AddUsers = ({ projectId, users, index }) => {
   // ["users"], _id, name, date, __v = project
 
   const [userNames, setUserNames] = useState(null);
   const [usersSearch, setUsersSearch] = useState(false);
 
   useEffect(() => {
-    // debugger;
     const getUserNames = async () => {
-      const res = await axios.get(`/api/project/${id}/users`);
+      const res = await axios.get(`/api/project/${projectId}/users`);
       const tempUsers = res.data;
       const tenUsers = tempUsers.slice(0, 10);
       setUserNames(tenUsers);
     };
     getUserNames();
-  }, [id, users]);
+  }, [projectId, users]);
 
   return (
     <AddUsersContainer>
@@ -90,14 +88,13 @@ const AddUsers = ({ project, users, index }) => {
           </ReactTooltip>
         </AddUsersListName>
       </AddUsersList>
-      {usersSearch && <UsersSearch index={index} id={id} />}
+      {usersSearch && <UsersSearch id={projectId} />}
     </AddUsersContainer>
   );
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  project: state.projects[ownProps.index],
-  users: state.projects[ownProps.index].users
+  users: state.projects[ownProps.projectId].users
 });
 
 export default connect(mapStateToProps)(AddUsers);

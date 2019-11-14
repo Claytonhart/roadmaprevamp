@@ -161,3 +161,8 @@ export const ModalFooterButton = styled.button`
     transform: translateY(-1px);
   }
 `;
+
+export const ModalError = styled.span`
+  color: red;
+  margin-bottom: 12px;
+`;
