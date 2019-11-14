@@ -15,7 +15,7 @@ const Item = styled.div`
   border-radius: 5px;
   width: 250px;
   min-width: 250px;
-  height: 307px;
+  height: 220px;
 
   display: flex;
   flex-direction: column;
